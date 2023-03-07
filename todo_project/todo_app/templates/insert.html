@@ -1,0 +1,10 @@
+{% extends 'master.html' %}
+{% block title %}Insert New ToDo{% endblock title %}
+{% block content %}
+<form method='post' action='{% url 'todo_app:insertDB' %}'>
+    {% csrf_token %}
+    Subjetct: <input name='Subject'/>
+    extra: <textarea name='extra'></textarea>
+    <input type="submit"/>
+</form>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'master.html' %}
+{% block title %}ToDo List{% endblock title %}
+{% block content %}
+List:
+<table>
+    <tr>
+        <th>subject</th>
+        <th>date published</th>
+        <th>date updated</th>
+        <th>extra</th>
+        <th>priority</th>
+    </tr>
+    {% if todo_list|length > 1 %}
+        {% for item in  todo_list %}
+    <tr>
+        <td>{{ item.subject }}</td>
+        <td>{{ item.date_pub }}</td>
+        <td>{{ item.date_upd }}</td>
+        <td>{{ item.extra }}</td>
+        <td>{{ item.priority }}</td>
+    </tr>
+        {% endfor %}
+    {% else %}
+    <tr>
+        <td>{{ todo_list.subject }}</td>
+        <td>{{ todo_list.date_pub }}</td>
+        <td>{{ todo_list.date_upd }}</td>
+        <td>{{ todo_list.extra }}</td>
+        <td>{{ todo_list.priority }}</td>
+    </tr>
+    {% endif %}
+</table>
+{% endblock content %}
