@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+{% block title %}Edit ToDo {{ todo.id }}{% endblock title %}
+{% block content %}
+    <form method='post' action='{% url 'todo_app:updateDB' todo.id%}'>
+        {% csrf_token %}
+        Subjetct: <input name='Subject' value='{{todo.subject}}'/>
+        extra: <textarea name='extra'>{{todo.extra}}</textarea>
+        date: <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+            <input type="text" class="form-control datetimepicker-input" 
+                data-target="#datetimepicker1" name="date" value="{{date}}"/>
+            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+        </div>
+        <input id="submit" type="submit"/>
+    </form>
+{% endblock content %}

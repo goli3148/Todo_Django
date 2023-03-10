@@ -1,0 +1,45 @@
+/* CSS for master.htl */
+#content{
+    width: 700px;
+    margin: 20px auto;
+}
+body{
+    width: 100hv !important;
+    height: 100hv !important;
+    background-color: #0077b6 !important;
+}
+
+/* CSS for index.html */
+tr{
+    border: 1px solid black;
+    text-align: center;
+}
+th{
+    padding: 5px;
+}
+
+/* CSS for insert.html and update.html */
+form{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: auto;
+}
+input, textarea{
+    display: block;
+    margin: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: .375rem .75rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    background-clip: padding-box;
+}
+input:focus, textarea:focus{
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+#submit{
+    max-width: 200px;
+    margin: 20px auto;
+}

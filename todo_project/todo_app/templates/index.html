@@ -9,25 +9,36 @@ List:
         <th>date updated</th>
         <th>extra</th>
         <th>priority</th>
+        <th>date</th>
+        <th>update</th>
+        <th>delete</th>
     </tr>
     {% if todo_list|length > 1 %}
         {% for item in  todo_list %}
-    <tr>
-        <td>{{ item.subject }}</td>
-        <td>{{ item.date_pub }}</td>
-        <td>{{ item.date_upd }}</td>
-        <td>{{ item.extra }}</td>
-        <td>{{ item.priority }}</td>
-    </tr>
+        <a href='{% url 'todo_app:update' item.id%}'>
+            <tr>
+                <td>{{ item.subject }}</td>
+                <td>{{ item.date_pub }}</td>
+                <td>{{ item.date_upd }}</td>
+                <td>{{ item.extra }}</td>
+                <td>{{ item.priority }}</td>
+                <td>{{ item.date }}</td>
+                <td><a href='{% url 'todo_app:update' item.id%}'>update</a></td>
+            </tr>
+        </a>
         {% endfor %}
     {% else %}
-    <tr>
-        <td>{{ todo_list.subject }}</td>
-        <td>{{ todo_list.date_pub }}</td>
-        <td>{{ todo_list.date_upd }}</td>
-        <td>{{ todo_list.extra }}</td>
-        <td>{{ todo_list.priority }}</td>
-    </tr>
+    <a href='{% url 'todo_app:update' item.id %}'>
+        <tr>
+            <td>{{ todo_list.subject }}</td>
+            <td>{{ todo_list.date_pub }}</td>
+            <td>{{ todo_list.date_upd }}</td>
+            <td>{{ todo_list.extra }}</td>
+            <td>{{ todo_list.priority }}</td>
+            <td>{{ todo_list.date }}</td>
+            <td><a href='{% url 'todo_app:update' item.id%}'>update</a></td>
+        </tr>
+    </a>
     {% endif %}
 </table>
 {% endblock content %}

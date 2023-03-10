@@ -15,8 +15,12 @@ class todo(models.Model):
     ]
     priority = models.CharField(max_length=1, choices=PRIORITY_CHOICES, default=MEDUIMPRIO)
     
+    date = models.DateTimeField("date time", null=True)
+    
     date_pub = models.DateField("date published", auto_now_add=True)
     date_upd = models.DateField("date updated", auto_now=True)
+    
+    
     
     def __str__(self):
         return self.subject

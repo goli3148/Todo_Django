@@ -4,5 +4,7 @@ app_name = 'todo_app'
 urlpatterns = [
     path('', views.index, name='index'),
     path('insert', views.insert, name='insert'),
-    path('insertDB', views.insertDB, name='insertDB')
+    path('insertDB', views.insertDB, name='insertDB'),
+    path('update/<int:id>', views.update, name='update'),
+    path('updateDB/<int:id>', views.updateDB, name='updateDB')
 ]
