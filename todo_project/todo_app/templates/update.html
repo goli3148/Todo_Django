@@ -4,7 +4,7 @@
     <form method='post' action='{% url 'todo_app:updateDB' todo.id%}'>
         {% csrf_token %}
         Subjetct: <input name='Subject' value='{{todo.subject}}'/>
-        extra: <textarea name='extra'>{{todo.extra}}</textarea>
+        extra: <input name='extra' value="{{todo.extra}}"/>
         date: <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
             <input type="text" class="form-control datetimepicker-input" 
                 data-target="#datetimepicker1" name="date" value="{{date}}"/>

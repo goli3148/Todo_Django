@@ -4,7 +4,7 @@
 <form method='post' action='{% url 'todo_app:insertDB' %}'>
     {% csrf_token %}
     Subjetct: <input name='Subject'/>
-    extra: <textarea name='extra'></textarea>
+    extra: <input name='extra'/>
     date: <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
         <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" name="date"/>
         <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">

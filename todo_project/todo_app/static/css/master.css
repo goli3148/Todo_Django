@@ -1,45 +1,70 @@
 /* CSS for master.htl */
 #content{
-    width: 700px;
-    margin: 20px auto;
+    width: 100vw;
+    height: 100vh;
+    padding: 50px;
 }
 body{
-    width: 100hv !important;
-    height: 100hv !important;
-    background-color: #0077b6 !important;
+    width: 100vh !important;
+    height: 100vh !important;
+    background: -webkit-linear-gradient(bottom,#c471f5,#fa71cd);
+    background: linear-gradient(bottom,#c471f5,#fa71cd);
 }
 
 /* CSS for index.html */
+table{
+    background-color: white;
+    margin: auto;
+}
 tr{
-    border: 1px solid black;
     text-align: center;
+    border-bottom: 1px solid whitesmoke;
+}
+th, td{
+    padding: 15px;
 }
 th{
-    padding: 5px;
+    font-weight: 500;
+    color: black;
 }
-
+td{
+    color: dimgrey;
+}
 /* CSS for insert.html and update.html */
 form{
     display: flex;
     flex-direction: column;
-    width: 500px;
+    max-width: 800px;
     margin: auto;
+    background-color: white; 
+    padding: 20px 20px 5px;
 }
 input, textarea{
     display: block;
-    margin: 5px;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    margin: 0px 0px 40px;
+    border: none !important;
+    border-bottom: 1px solid #ced4da !important;
     padding: .375rem .75rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     background-clip: padding-box;
 }
-input:focus, textarea:focus{
-    border-color: #80bdff;
+.input-group-text{
+    border: none !important;
+    border-bottom: 1px solid #ced4da !important;
+    border-radius: 0px !important;
+    background-color: white !important;
+}
+input:focus, textarea:focus, .input-group-text:focus{
+    /*border-color: #80bdff;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);*/
+    border-color: none !important;
+    box-shadow: none !important;
+    outline: 0;
 }
 #submit{
-    max-width: 200px;
+    width: 100%;
     margin: 20px auto;
+    background-color: #c471f5 !important;
+    color: white;
+    padding: 10px;
 }
