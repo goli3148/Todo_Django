@@ -12,9 +12,16 @@ body{
 }
 
 /* CSS for index.html */
+#index-container{
+    width: fit-content;
+    margin: auto;
+}
 table{
     background-color: white;
     margin: auto;
+    border-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 tr{
     text-align: center;
@@ -27,11 +34,20 @@ th{
     font-weight: 500;
     color: black;
 }
-td{
-    color: dimgrey;
+td, a{
+    color: dimgrey !important;
 }
 .deleteBtn:hover{
     cursor: pointer;
+}
+#add-btn{
+    display: block;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: dimgray !important;
+    background-color: white;
+    text-align: center;
+    padding: 15px 0px;
 }
 /* CSS for insert.html and update.html */
 form{
@@ -41,6 +57,7 @@ form{
     margin: auto;
     background-color: white; 
     padding: 20px 20px 5px;
+    border-radius: 5px;
 }
 input, textarea{
     display: block;
@@ -70,4 +87,12 @@ input:focus, textarea:focus, .input-group-text:focus{
     background-color: #c471f5 !important;
     color: white;
     padding: 10px;
+}
+.fa-angle-left{
+    padding: 0px 0px 15px;
+    font-size: 20px !important;
+}
+#back-btn{
+    width: fit-content;
+    padding: 0px 5px;
 }

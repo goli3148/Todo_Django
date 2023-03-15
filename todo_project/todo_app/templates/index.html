@@ -1,47 +1,50 @@
 {% extends 'master.html' %}
 {% block title %}ToDo List{% endblock title %}
 {% block content %}
-<table>
-    <tr>
-        <th>subject</th>
-        <th>date published</th>
-        <th>date updated</th>
-        <th>extra</th>
-        <th>priority</th>
-        <th>date</th>
-        <th>update</th>
-        <th>delete</th>
-    </tr>
-    {% if todo_list|length > 1 %}
-        {% for item in  todo_list %}
-        <a href='{% url 'todo_app:update' item.id%}'>
+<div id='index-container'>
+    <table>
+        <tr>
+            <th>subject</th>
+            <th>date published</th>
+            <th>date updated</th>
+            <th>extra</th>
+            <th>priority</th>
+            <th>date</th>
+            <th>update</th>
+            <th>delete</th>
+        </tr>
+        {% if todo_list|length > 1 %}
+            {% for item in  todo_list %}
+            <a href='{% url 'todo_app:update' item.id%}'>
+                <tr>
+                    <td>{{ item.subject }}</td>
+                    <td>{{ item.date_pub }}</td>
+                    <td>{{ item.date_upd }}</td>
+                    <td>{{ item.extra }}</td>
+                    <td>{{ item.priority }}</td>
+                    <td>{{ item.date }}</td>
+                    <td><a href='{% url 'todo_app:update' item.id%}'>update</a></td>
+                    <td class='deleteBtn' onclick="ask_for_delete('{{ item.subject }}', '{% url 'todo_app:deleteDB' item.id %}')">delete</td>
+                </tr>
+            </a>
+            {% endfor %}
+        {% else %}
+        <a href='{% url 'todo_app:update' item.id %}'>
             <tr>
-                <td>{{ item.subject }}</td>
-                <td>{{ item.date_pub }}</td>
-                <td>{{ item.date_upd }}</td>
-                <td>{{ item.extra }}</td>
-                <td>{{ item.priority }}</td>
-                <td>{{ item.date }}</td>
+                <td>{{ todo_list.subject }}</td>
+                <td>{{ todo_list.date_pub }}</td>
+                <td>{{ todo_list.date_upd }}</td>
+                <td>{{ todo_list.extra }}</td>
+                <td>{{ todo_list.priority }}</td>
+                <td>{{ todo_list.date }}</td>
                 <td><a href='{% url 'todo_app:update' item.id%}'>update</a></td>
-                <td class='deleteBtn' onclick="ask_for_delete('{{ item.subject }}', '{% url 'todo_app:deleteDB' item.id %}')">delete</td>
+                <td class='deleteBtn' onclick="ask_for_delete({{ todo_list.subject }}, '{% url 'todo_app:deleteDB' todo_list.id %}')">delete</td>
             </tr>
         </a>
-        {% endfor %}
-    {% else %}
-    <a href='{% url 'todo_app:update' item.id %}'>
-        <tr>
-            <td>{{ todo_list.subject }}</td>
-            <td>{{ todo_list.date_pub }}</td>
-            <td>{{ todo_list.date_upd }}</td>
-            <td>{{ todo_list.extra }}</td>
-            <td>{{ todo_list.priority }}</td>
-            <td>{{ todo_list.date }}</td>
-            <td><a href='{% url 'todo_app:update' item.id%}'>update</a></td>
-            <td class='deleteBtn' onclick="ask_for_delete({{ todo_list.subject }}, '{% url 'todo_app:deleteDB' todo_list.id %}')">delete</td>
-        </tr>
-    </a>
-    {% endif %}
-</table>
+        {% endif %}
+    </table>
+    <span id='add-btn'><a href='{% url 'todo_app:insert' %}'>New</a></span>
+</div>
 <script>
     function ask_for_delete(subject, url){
         let message = new MessageBox(subject);

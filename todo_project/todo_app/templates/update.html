@@ -2,6 +2,9 @@
 {% block title %}Edit ToDo {{ todo.id }}{% endblock title %}
 {% block content %}
     <form method='post' action='{% url 'todo_app:updateDB' todo.id%}'>
+        <a id='back-btn' href='{% url 'todo_app:index' %}'>
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+          </a>
         {% csrf_token %}
         Subjetct: <input name='Subject' value='{{todo.subject}}'/>
         extra: <input name='extra' value="{{todo.extra}}"/>

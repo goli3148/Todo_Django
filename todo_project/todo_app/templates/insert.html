@@ -3,6 +3,9 @@
 {% block content %}
 <form method='post' action='{% url 'todo_app:insertDB' %}'>
     {% csrf_token %}
+    <a id='back-btn' href='{% url 'todo_app:index' %}'>
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </a>
     Subjetct: <input name='Subject'/>
     extra: <input name='extra'/>
     date: <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
