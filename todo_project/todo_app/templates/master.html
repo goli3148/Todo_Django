@@ -6,6 +6,12 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/master.css' %}"/>
 
+  <!-- theme for messagebox scripts -->
+  <link rel="stylesheet" href="{% static 'css/messagebox-default.min.css' %}" />
+
+  <!-- script for messagebox Lib -->
+  <script src="{% static 'js/messagebox.min.js' %}"></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Static Example</title>
@@ -25,6 +31,8 @@
   <!-- Tempus Dominus Bootstrap 4 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js" integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
+
+  
 
   <title>{% block title %}{% endblock %}</title>
 </head>

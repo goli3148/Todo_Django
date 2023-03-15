@@ -6,5 +6,6 @@ urlpatterns = [
     path('insert', views.insert, name='insert'),
     path('insertDB', views.insertDB, name='insertDB'),
     path('update/<int:id>', views.update, name='update'),
-    path('updateDB/<int:id>', views.updateDB, name='updateDB')
+    path('updateDB/<int:id>', views.updateDB, name='updateDB'),
+    path('deleteDB/<int:id>', views.deleteDB, name='deleteDB'),
 ]

@@ -30,6 +30,9 @@ th{
 td{
     color: dimgrey;
 }
+.deleteBtn:hover{
+    cursor: pointer;
+}
 /* CSS for insert.html and update.html */
 form{
     display: flex;

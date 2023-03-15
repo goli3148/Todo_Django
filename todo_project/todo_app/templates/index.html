@@ -23,6 +23,7 @@
                 <td>{{ item.priority }}</td>
                 <td>{{ item.date }}</td>
                 <td><a href='{% url 'todo_app:update' item.id%}'>update</a></td>
+                <td class='deleteBtn' onclick="ask_for_delete('{{ item.subject }}', '{% url 'todo_app:deleteDB' item.id %}')">delete</td>
             </tr>
         </a>
         {% endfor %}
@@ -36,8 +37,29 @@
             <td>{{ todo_list.priority }}</td>
             <td>{{ todo_list.date }}</td>
             <td><a href='{% url 'todo_app:update' item.id%}'>update</a></td>
+            <td class='deleteBtn' onclick="ask_for_delete({{ todo_list.subject }}, '{% url 'todo_app:deleteDB' todo_list.id %}')">delete</td>
         </tr>
     </a>
     {% endif %}
 </table>
+<script>
+    function ask_for_delete(subject, url){
+        let message = new MessageBox(subject);
+        message.setTitle("Delete "+subject);
+        message.setMessage('are you sure wanna delete '+subject);
+        message
+        .addButton("Yes", "green")
+        .addButton("No", "red")
+        message.show().then((x) => {
+            if (x=='Yes'){
+                window.location.href = url
+                
+                let waitMessage = new MessageBox('Wait')
+                waitMessage.setTitle('wait')
+                waitMessage.setMessage('Wait to delete')
+                waitMessage.show()
+            }
+        })
+    }
+</script>
 {% endblock content %}

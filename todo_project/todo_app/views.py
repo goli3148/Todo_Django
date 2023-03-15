@@ -39,4 +39,9 @@ def updateDB(request, id):
         todo_up.date = datetime.strptime(date, "%m/%d/%Y %I:%M %p") 
     todo_up.save()
     return HttpResponseRedirect(reverse('todo_app:index'))
+
+def deleteDB(request, id):
+    todo_del = get_object_or_404(todo, pk=id)
+    todo_del.delete()
+    return HttpResponseRedirect(reverse('todo_app:index'))
 # Create your views here.
