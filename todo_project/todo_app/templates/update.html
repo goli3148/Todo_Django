@@ -1,7 +1,7 @@
 {% extends 'master.html' %}
 {% block title %}Edit ToDo {{ todo.id }}{% endblock title %}
 {% block content %}
-    <form method='post' action='{% url 'todo_app:updateDB' todo.id%}'>
+    <form method='post' action='{% url 'todo_app:update' todo.id%}'>
         <a id='back-btn' href='{% url 'todo_app:index' %}'>
             <i class="fa fa-angle-left" aria-hidden="true"></i>
           </a>
