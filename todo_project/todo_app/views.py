@@ -39,7 +39,7 @@ def update(request,id):
         todo_up.save()
         return HttpResponseRedirect(reverse('todo_app:index'))
 
-def deleteDB(request, id):
+def delete(request, id):
     todo_del = get_object_or_404(todo, pk=id)
     todo_del.delete()
     return HttpResponseRedirect(reverse('todo_app:index'))

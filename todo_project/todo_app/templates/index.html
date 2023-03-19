@@ -24,7 +24,7 @@
                     <td>{{ item.priority }}</td>
                     <td>{{ item.date }}</td>
                     <td><a href='{% url 'todo_app:update' item.id%}'>update</a></td>
-                    <td class='deleteBtn' onclick="ask_for_delete('{{ item.subject }}', '{% url 'todo_app:deleteDB' item.id %}')">delete</td>
+                    <td class='deleteBtn' onclick="ask_for_delete('{{ item.subject }}', '{% url 'todo_app:delete' item.id %}')">delete</td>
                 </tr>
             </a>
             {% endfor %}
