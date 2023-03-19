@@ -1,0 +1,34 @@
+{% extends 'master.html' %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<div>
+    <form id="form" onsubmit="return validation()" method="POST" autocomplete="off" action="{% url 'todo_app:register' %}">
+        {% csrf_token %}
+        <a id='back-btn' href='{% url 'todo_app:index' %}'>
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+        username:
+        <input name="username" type="TEXT" maxlength="20" placeholder="username" autocomplete="cc-number"/>
+        password
+        <input name="password" type="PASSWORD" maxlength="20" autocomplete="off"/>
+        email:
+        <input name="email" type="email" placeholder="email" autocomplete="cc-number"/>
+        first name:
+        <input name="firstname" type="TEXT" maxlength="20" placeholder="first name" autocomplete="cc-number"/>
+        last name:
+        <input name="last name" type="TEXT" maxlength="20" placeholder="last name" autocomplete="cc-number"/>
+        <input type="submit" value="login" id="submit" autocomplete="off"/>
+    </form>
+</div>
+<script>
+    function validation(){
+        let form_register = document.getElementById('form')
+        for (i=2; i<7; i++){
+            if (form_register[i].value == "" ||
+                form_register[i].value == null)
+                    return false
+        }
+        return true
+    }
+</script>
+{% endblock content %}

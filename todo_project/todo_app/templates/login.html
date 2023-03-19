@@ -1,0 +1,20 @@
+{% extends 'master.html' %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<div>
+    <form method="POST" autocomplete="off" action="{% url 'todo_app:login' %}">
+        {% csrf_token %}
+        <a id='back-btn' href='{% url 'todo_app:index' %}'>
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
+        {% if message %}
+            <div id="error">{{ message }}</div>
+        {% endif %}
+        username:
+        <input name="username" type="TEXT" maxlength="20" placeholder="username" autocomplete="cc-number"/>
+        password
+        <input name="password" type="PASSWORD" maxlength="20" autocomplete="off"/>
+        <input type="submit" value="login" id="submit" autocomplete="off"/>
+    </form>
+</div>
+{% endblock content %}

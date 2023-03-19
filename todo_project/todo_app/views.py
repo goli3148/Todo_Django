@@ -4,6 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from datetime import datetime
 from django.views.decorators.http import require_http_methods
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 def index(request):
     list = todo.objects.all().values()
@@ -43,4 +45,47 @@ def delete(request, id):
     todo_del = get_object_or_404(todo, pk=id)
     todo_del.delete()
     return HttpResponseRedirect(reverse('todo_app:index'))
+
+def auth_login(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('todo_app:index'))
+    mess = ""
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None and user.is_active:
+            login(request, user)
+            return HttpResponseRedirect(reverse('todo_app:index'))
+        elif user is not None and not user.is_active:
+            # to allow deactivated user authenticated I added :
+            # AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
+            # to settings.py
+            mess = "account is suspended."
+        else:
+            mess = "Wrong user name or password."
+    return render(request, 'login.html', {'message':mess})
+
+def register(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('todo_app:index'))
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        firstname = request.POST.get("firstname")
+        lastname = request.POST.get("lastname")
+        email = request.POST.get("email")
+        user = User.objects.create_user(username, password, email)
+        if firstname is not None: user.first_name = firstname
+        if lastname is not None: user.last_name = lastname
+        user.save()
+        return HttpResponseRedirect(reverse('todo_app:login'))
+    if request.method == "GET":
+        return render(request, "register.html", {})
+    
+def auth_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('todo_app:login'))
+        
+        
 # Create your views here.
