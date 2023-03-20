@@ -1,6 +1,8 @@
 from django.db import models
+from django.conf import settings
 
 class todo(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     
     subject = models.CharField("subject", max_length=50)
     extra = models.TextField("extra", max_length=500)

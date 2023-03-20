@@ -2,6 +2,7 @@
 {% block title %}ToDo List{% endblock title %}
 {% block content %}
 <div id='index-container'>
+    {% if todo_list %}
     <table>
         <tr>
             <th>subject</th>
@@ -13,9 +14,8 @@
             <th>update</th>
             <th>delete</th>
         </tr>
-        {% if todo_list|length > 1 %}
             {% for item in  todo_list %}
-            <a href='{% url 'todo_app:update' item.id%}'>
+            <a>
                 <tr>
                     <td>{{ item.subject }}</td>
                     <td>{{ item.date_pub }}</td>
@@ -28,22 +28,13 @@
                 </tr>
             </a>
             {% endfor %}
-        {% else %}
-        <a href='{% url 'todo_app:update' item.id %}'>
-            <tr>
-                <td>{{ todo_list.subject }}</td>
-                <td>{{ todo_list.date_pub }}</td>
-                <td>{{ todo_list.date_upd }}</td>
-                <td>{{ todo_list.extra }}</td>
-                <td>{{ todo_list.priority }}</td>
-                <td>{{ todo_list.date }}</td>
-                <td><a href='{% url 'todo_app:update' item.id%}'>update</a></td>
-                <td class='deleteBtn' onclick="ask_for_delete({{ todo_list.subject }}, '{% url 'todo_app:deleteDB' todo_list.id %}')">delete</td>
-            </tr>
-        </a>
-        {% endif %}
+       
     </table>
-    <span id='add-btn'><a href='{% url 'todo_app:insert' %}'>New</a></span>
+    {% endif %}
+    <span id='add-btn'>
+        <a style="display:block;" href='{% url 'todo_app:insert' %}'>New</a>
+        <a style="display:block;" href='{% url 'todo_app:logout' %}'>log out</a>
+    </span>
 </div>
 <script>
     function ask_for_delete(subject, url){

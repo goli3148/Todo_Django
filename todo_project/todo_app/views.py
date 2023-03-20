@@ -8,10 +8,18 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
 def index(request):
-    list = todo.objects.all().values()
-    return render(request, 'index.html', {'todo_list':list})
+    if request.user.is_authenticated:
+        # list = todo.objects.all().values()
+        # list = get_object_or_404(todo, pk=request.user.id)
+        list = todo.objects.filter(user=request.user.id).values()
+        
+        print(list)
+        return render(request, 'index.html', {'todo_list':list})
+    return HttpResponseRedirect(reverse('todo_app:login'))
    
 def insert(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("todo_app:login"))
     if request.method == "GET":
         return render(request, 'insert.html')
     elif request.method == "POST":
@@ -19,7 +27,7 @@ def insert(request):
         ext = request.POST['extra']
         # request.POST['date'] => 03/09/2023 9:17 AM
         dat = datetime.strptime(request.POST['date'], "%m/%d/%Y %I:%M %p") 
-        todo(subject=sub, extra=ext, date=dat).save()
+        todo(user=request.user ,subject=sub, extra=ext, date=dat).save()
         return HttpResponseRedirect(reverse('todo_app:index'))
 
 def update(request,id):
